@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://sparrowmap.com/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 10 

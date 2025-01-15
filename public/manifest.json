@@ -1,0 +1,40 @@
+{
+  "name": "SparrowMap - SVCE Care Club",
+  "short_name": "SparrowMap",
+  "description": "Track and protect local sparrow populations with SVCE Care Club's interactive mapping platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/care-club-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "environment", "conservation"],
+  "orientation": "any",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "View Map",
+      "url": "/map",
+      "description": "View sparrow sightings map"
+    },
+    {
+      "name": "Plot Sighting",
+      "url": "/plotter-signin",
+      "description": "Record a new sparrow sighting"
+    }
+  ]
+} 
