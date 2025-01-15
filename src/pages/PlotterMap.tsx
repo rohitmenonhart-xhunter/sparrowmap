@@ -353,15 +353,12 @@ export default function PlotterMap() {
 
         {/* Welcome Message - Mobile responsive */}
         <div className="absolute bottom-20 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 w-full px-4 sm:px-0 sm:w-auto">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-4 text-center max-w-md mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Bird className="w-5 h-5 text-blue-500" />
-              <h1 className="text-lg font-semibold text-gray-800">Sparrow Plotter</h1>
+          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-3 text-center max-w-[280px] mx-auto">
+            <div className="flex items-center justify-center gap-2">
+              <Bird className="w-4 h-4 text-blue-500" />
+              <h1 className="text-base font-semibold text-gray-800">Sparrow Plotter</h1>
             </div>
-            <div className="space-y-1">
-              <p className="text-sm text-gray-600">Click anywhere within the blue circle to add a new sparrow plot</p>
-              <p className="text-xs text-blue-600">You can only plot within 70 meters of your current location</p>
-            </div>
+            <p className="text-xs text-gray-600 mt-1">Click within blue circle to plot</p>
           </div>
         </div>
 
