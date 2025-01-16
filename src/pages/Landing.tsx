@@ -283,6 +283,400 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Maps Feature Section */}
+      <section className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 relative overflow-hidden">
+        {/* Circuit Background Pattern */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <svg width="100%" height="100%" className="absolute inset-0" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+              {/* Main Circuit Traces */}
+              <g>
+                {/* Main Traces leading to cards */}
+                <path
+                  d="M100 100 h200 c50 0 50 50 100 50 h200
+                     M200 300 h300 c50 0 50 50 100 50 h200
+                     M150 500 h250 c50 0 50 50 100 50 h300"
+                  stroke="rgba(59, 130, 246, 0.1)"
+                  strokeWidth="4"
+                  fill="none"
+                />
+
+                {/* Left Card Connection */}
+                <path
+                  d="M300 500 v200 c0 50 50 50 50 100"
+                  stroke="rgba(59, 130, 246, 0.1)"
+                  strokeWidth="4"
+                  fill="none"
+                />
+
+                {/* Right Card Connection */}
+                <path
+                  d="M700 500 v200 c0 50 -50 50 -50 100"
+                  stroke="rgba(59, 130, 246, 0.1)"
+                  strokeWidth="4"
+                  fill="none"
+                />
+
+                {/* Vertical Connectors */}
+                <path
+                  d="M200 100 v200 c0 50 50 50 50 100 v100
+                     M800 100 v200 c0 50 -50 50 -50 100 v100"
+                  stroke="rgba(59, 130, 246, 0.1)"
+                  strokeWidth="4"
+                  fill="none"
+                />
+
+                {/* Connection Points */}
+                {[
+                  [200, 100], [500, 100], [800, 100],
+                  [300, 300], [600, 300], [900, 300],
+                  [300, 500], [500, 500], [700, 500],
+                  [350, 800], [650, 800] // Points near cards
+                ].map(([x, y], i) => (
+                  <circle
+                    key={i}
+                    cx={x}
+                    cy={y}
+                    r="6"
+                    fill="rgba(59, 130, 246, 0.15)"
+                  />
+                ))}
+              </g>
+
+              {/* Electron Paths */}
+              <g>
+                {/* Path to Left Card */}
+                <path 
+                  id="electron-path-1" 
+                  d="M100 100 h200 c50 0 50 50 100 50 h200" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+                
+                {/* Left Vertical Flow */}
+                <path 
+                  id="electron-path-2" 
+                  d="M200 100 v200 c0 50 50 50 50 100 v100" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+                
+                {/* Right Vertical Flow */}
+                <path 
+                  id="electron-path-3" 
+                  d="M800 100 v200 c0 50 -50 50 -50 100 v100" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+                
+                {/* Horizontal Middle Flow */}
+                <path 
+                  id="electron-path-4" 
+                  d="M150 500 h250 c50 0 50 50 100 50 h300" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+
+                {/* Card Entry Paths - Modified to go into cards */}
+                <path 
+                  id="electron-path-5" 
+                  d="M300 500 v200 c0 50 50 50 50 100 v50" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+
+                <path 
+                  id="electron-path-6" 
+                  d="M700 500 v200 c0 50 -50 50 -50 100 v50" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+
+                {/* New paths that enter cards horizontally */}
+                <path 
+                  id="electron-path-7" 
+                  d="M250 800 v100" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+
+                <path 
+                  id="electron-path-8" 
+                  d="M750 800 v100" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+
+                {/* Additional card entry paths from sides */}
+                <path 
+                  id="electron-path-9" 
+                  d="M200 850 h100" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+
+                <path 
+                  id="electron-path-10" 
+                  d="M800 850 h-100" 
+                  stroke="transparent" 
+                  fill="none" 
+                />
+              </g>
+
+              {/* Regular Electrons */}
+              {[1, 2, 3, 4].map((pathNum) => (
+                <g key={pathNum}>
+                  {[0, 0.5].map((delay, i) => (
+                    <circle 
+                      key={i} 
+                      r="4" 
+                      fill="rgba(59, 130, 246, 0.5)"
+                    >
+                      <animateMotion
+                        dur={`${pathNum === 4 ? 6 : 4}s`}
+                        repeatCount="indefinite"
+                        begin={`${pathNum * 0.3 + delay}s`}
+                      >
+                        <mpath href={`#electron-path-${pathNum}`} />
+                      </animateMotion>
+                      <animate
+                        attributeName="opacity"
+                        values="0.5;0.8;0.5"
+                        dur="2s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  ))}
+                </g>
+              ))}
+
+              {/* Card Entry Electrons with Fade Out */}
+              {[5, 6, 7, 8, 9, 10].map((pathNum) => (
+                <g key={pathNum}>
+                  {[0, 2].map((delay, i) => (
+                    <circle 
+                      key={i} 
+                      r="4" 
+                      fill="rgba(59, 130, 246, 0.5)"
+                    >
+                      <animateMotion
+                        dur="3s"
+                        repeatCount="indefinite"
+                        begin={`${pathNum * 0.4 + delay}s`}
+                      >
+                        <mpath href={`#electron-path-${pathNum}`} />
+                      </animateMotion>
+                      <animate
+                        attributeName="opacity"
+                        values="0.5;0.8;0"
+                        dur="3s"
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="r"
+                        values="4;6;2"
+                        dur="3s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  ))}
+                </g>
+              ))}
+
+              {/* Enhanced Card Entry Points Glow */}
+              <circle cx="250" cy="850" r="8" fill="rgba(59, 130, 246, 0.1)">
+                <animate
+                  attributeName="r"
+                  values="6;12;6"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="fill-opacity"
+                  values="0.1;0.4;0.1"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle cx="750" cy="850" r="8" fill="rgba(59, 130, 246, 0.1)">
+                <animate
+                  attributeName="r"
+                  values="6;12;6"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="fill-opacity"
+                  values="0.1;0.4;0.1"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </svg>
+
+            {/* Enhanced Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-transparent to-blue-50/10" />
+            <motion.div
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="absolute inset-0 bg-blue-100/5" />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        <div className="relative">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Interactive Maps for Everyone
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore our different map interfaces designed for both public viewing and dedicated plotters.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
+            {/* Public Map Card */}
+            <motion.div
+              className="relative bg-white rounded-2xl shadow-xl p-6 sm:p-8 overflow-hidden"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-32 h-32">
+                <motion.div
+                  className="absolute inset-0 bg-blue-50"
+                  animate={{
+                    backgroundImage: [
+                      'radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+                      'radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)',
+                      'radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </div>
+              
+              <div className="relative">
+                <MapPin className="w-12 h-12 text-blue-600 mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Public Map</h3>
+                <p className="text-gray-600 mb-6">
+                  View all sparrow sightings. An interactive map that shows the distribution and frequency of sparrow appearances.
+                </p>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    to="/map"
+                    className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700"
+                  >
+                    Explore Map <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Plotter Map Card */}
+            <motion.div
+              className="relative bg-white rounded-2xl shadow-xl p-6 sm:p-8 overflow-hidden"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-32 h-32">
+                <motion.div
+                  className="absolute inset-0 bg-blue-50"
+                  animate={{
+                    backgroundImage: [
+                      'radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+                      'radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)',
+                      'radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </div>
+
+              <div className="relative">
+                <Users className="w-12 h-12 text-blue-600 mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Plotter Map</h3>
+                <p className="text-gray-600 mb-6">
+                  A specialized interface for registered plotters to add and manage sparrow sightings with detailed information and tracking.
+                </p>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    to="/plotter"
+                    className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700"
+                  >
+                    Access Plotter Map <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Enhanced Circuit Connection Lines */}
+          <motion.div
+            className="absolute left-1/2 top-1/2 w-px h-32"
+            style={{
+              background: 'linear-gradient(to bottom, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2))'
+            }}
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div
+              className="absolute top-0 left-1/2 w-3 h-3 -ml-1.5 rounded-full bg-blue-100"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+            <motion.div
+              className="absolute bottom-0 left-1/2 w-3 h-3 -ml-1.5 rounded-full bg-blue-100"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+            />
+          </motion.div>
+          
+          <motion.div
+            className="absolute left-1/4 top-1/2 w-1/2 h-px"
+            style={{
+              background: 'linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2))'
+            }}
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <motion.div
+              className="absolute left-0 top-1/2 w-3 h-3 -mt-1.5 rounded-full bg-blue-100"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+            />
+            <motion.div
+              className="absolute right-0 top-1/2 w-3 h-3 -mt-1.5 rounded-full bg-blue-100"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Features */}
       <section className="py-16 sm:py-32 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
